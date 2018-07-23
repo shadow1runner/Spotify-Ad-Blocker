@@ -53,8 +53,10 @@ namespace EZBlocker
                     if (hook.IsAdPlaying())
                     {
                         if (MainTimer.Interval < 1500) MainTimer.Interval = 1500;
-                        if (!playingAd) playingAd = true;
-                        if (!muted) Mute(true);
+                        if (!playingAd) 
+                            playingAd = true;
+                        if (!muted) 
+                            Mute(true);
 
                         string artist = hook.GetArtist();
                         if (lastArtistName != artist)
@@ -65,9 +67,14 @@ namespace EZBlocker
                     }
                     else if (hook.IsPlaying()) // Normal music
                     {
-                        if (muted) Mute(false);
-                        if (MainTimer.Interval > 400) MainTimer.Interval = 400;
-                        if (playingAd) playingAd = false;
+                        if (muted) 
+                            Mute(false);
+
+                        if (MainTimer.Interval > 400) 
+                            MainTimer.Interval = 400;
+
+                        if (playingAd) 
+                            playingAd = false;
 
                         string artist = hook.GetArtist();
                         if (lastArtistName != artist)
@@ -75,10 +82,6 @@ namespace EZBlocker
                             StatusLabel.Text = "Playing: " + Truncate(artist);
                             artistTooltip.SetToolTip(StatusLabel, lastArtistName = artist);
                         }
-                    }
-                    else if (playingAd) // If here, means we were in an ad state, but Spotify was paused and ad is no longer playing
-                    {
-                        AudioUtils.SendPlayPause(hook.Handle);
                     }
                     else
                     {
