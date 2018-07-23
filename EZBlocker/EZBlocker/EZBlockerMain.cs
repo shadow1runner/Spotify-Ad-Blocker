@@ -32,6 +32,13 @@ namespace EZBlocker
         public Main()
         {
             InitializeComponent();
+#if DEBUG
+            WindowState = FormWindowState.Normal;
+            this.ShowInTaskbar = true;
+#else
+            WindowState = FormWindowState.Minimized;
+            this.ShowInTaskbar = false;
+#endif
         }
 
         /**
