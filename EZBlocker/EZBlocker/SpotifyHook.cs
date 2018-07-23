@@ -68,7 +68,8 @@ namespace EZBlocker
             Spotify = null;
             WindowName = "";
             Handle = IntPtr.Zero;
-            Marshal.ReleaseComObject(VolumeControl);
+            if(VolumeControl!=null)
+                Marshal.ReleaseComObject(VolumeControl);
         }
 
         private bool HookSpotify()

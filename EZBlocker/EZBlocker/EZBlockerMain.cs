@@ -27,9 +27,6 @@ namespace EZBlocker
 
         private const string website = @"https://www.ericzhang.me/projects/spotify-ad-blocker-ezblocker/";
 
-        private Analytics a;
-        private DateTime lastRequest;
-
         private SpotifyHook hook;
 
         public Main()
@@ -57,7 +54,6 @@ namespace EZBlocker
                         {
                             StatusLabel.Text = "Muting: " + Truncate(artist);
                             artistTooltip.SetToolTip(StatusLabel, lastArtistName = artist);
-                            LogAction("/mute/" + artist);
                         }
                     }
                     else if (hook.IsPlaying()) // Normal music
@@ -71,7 +67,6 @@ namespace EZBlocker
                         {
                             StatusLabel.Text = "Playing: " + Truncate(artist);
                             artistTooltip.SetToolTip(StatusLabel, lastArtistName = artist);
-                            LogAction("/play/" + artist);
                         }
                     }
                     else if (playingAd) // If here, means we were in an ad state, but Spotify was paused and ad is no longer playing
@@ -145,23 +140,6 @@ namespace EZBlocker
             }
         }
 
-        private void LogAction(string action)
-        {
-            Task.Run(() => a.LogAction(action));
-            lastRequest = DateTime.Now;
-        }
-
-        /**
-         * Send a request every 5 minutes to keep session alive
-         **/
-        private void Heartbeat_Tick(object sender, EventArgs e)
-        {
-            if (DateTime.Now - lastRequest > TimeSpan.FromMinutes(5))
-            {
-                LogAction("/heartbeat");
-            }
-        }
-
 
         private void Main_Load(object sender, EventArgs e)
         {
@@ -217,22 +195,12 @@ namespace EZBlocker
                 }
             }
 
-            // Set up Analytics
-            if (String.IsNullOrEmpty(Properties.Settings.Default.CID))
-            {
-                Properties.Settings.Default.CID = Analytics.GenerateCID();
-                Properties.Settings.Default.Save();
-            }
-            a = new Analytics(Properties.Settings.Default.CID, Assembly.GetExecutingAssembly().GetName().Version.ToString());
-
             // Start Spotify hook
             hook = new SpotifyHook();
 
             Mute(false);
 
             MainTimer.Enabled = true;
-
-            LogAction("/launch");
 
             Task.Run(() => CheckUpdate());
         }
@@ -257,11 +225,6 @@ namespace EZBlocker
             this.ShowInTaskbar = true;
         }
         
-        private void Notify(String message)
-        {
-            NotifyIcon.ShowBalloonTip(5000, "EZBlocker", message, ToolTipIcon.None);
-        }
-
         private void NotifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             if (!this.ShowInTaskbar && e.Button == MouseButtons.Left)
@@ -270,18 +233,12 @@ namespace EZBlocker
             }
         }
 
-        private void NotifyIcon_BalloonTipClicked(object sender, EventArgs e)
-        {
-            RestoreFromTray();
-        }
-
         private void Form_Resize(object sender, EventArgs e)
         {
             if (this.WindowState == FormWindowState.Minimized)
             {
                 this.ShowInTaskbar = false;
                 this.FormBorderStyle = FormBorderStyle.FixedToolWindow;
-                Notify("EZBlocker is hidden. Double-click this icon to restore.");
             }
         }
 
@@ -317,7 +274,6 @@ namespace EZBlocker
                     }
                 }
                 MessageBox.Show("You may need to restart Spotify or your computer for this setting to take effect.", "EZBlocker", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LogAction("/settings/blockBanners/" + BlockBannersCheckbox.Checked.ToString());
             }
             catch (Exception ex)
             {
@@ -337,7 +293,6 @@ namespace EZBlocker
             {
                 startupKey.DeleteValue("EZBlocker");
             }
-            LogAction("/settings/startup/" + StartupCheckbox.Checked.ToString());
         }
 
 
@@ -346,7 +301,6 @@ namespace EZBlocker
             if (!MainTimer.Enabled) return; // Still setting up UI
             Properties.Settings.Default.StartSpotify = SpotifyCheckbox.Checked;
             Properties.Settings.Default.Save();
-            LogAction("/settings/startSpotify/" + SpotifyCheckbox.Checked.ToString());
         }
 
         private void VolumeMixerButton_Click(object sender, EventArgs e)
@@ -354,7 +308,6 @@ namespace EZBlocker
             try
             {
                 Process.Start(volumeMixerPath);
-                LogAction("/button/volumeMixer");
             }
             catch (Exception)
             {
@@ -366,7 +319,6 @@ namespace EZBlocker
         {
             MessageBox.Show("Please leave a comment clearly describing your problem. \r\n\r\nEg: My audio ads are not muted and banner ads are still visible.", "EZBlocker");
             Process.Start(website);
-            LogAction("/button/website");
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
