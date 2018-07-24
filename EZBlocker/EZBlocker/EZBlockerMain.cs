@@ -52,11 +52,9 @@ namespace EZBlocker
                     Debug.WriteLine(AudioUtils.GetPeakVolume(hook.VolumeControl));
                     if (hook.IsAdPlaying())
                     {
-                        if (MainTimer.Interval < 1500) MainTimer.Interval = 1500;
-                        if (!playingAd) 
-                            playingAd = true;
-                        if (!muted) 
-                            Mute(true);
+                        if (MainTimer.Interval < 1000) MainTimer.Interval = 1000;
+                        if (!playingAd) playingAd = true;
+                        if (!muted) Mute(true);
 
                         string artist = hook.GetArtist();
                         if (lastArtistName != artist)
@@ -65,16 +63,15 @@ namespace EZBlocker
                             artistTooltip.SetToolTip(StatusLabel, lastArtistName = artist);
                         }
                     }
-                    else if (hook.IsPlaying()) // Normal music
+                    else if (hook.IsPlaying() && !hook.WindowName.Equals("Spotify")) // Normal music
                     {
-                        if (muted) 
+                        if (muted)
+                        {
+                            Thread.Sleep(750); // Give extra time for ad to change out
                             Mute(false);
-
-                        if (MainTimer.Interval > 400) 
-                            MainTimer.Interval = 400;
-
-                        if (playingAd) 
-                            playingAd = false;
+                        }
+                        if (MainTimer.Interval > 400) MainTimer.Interval = 400;
+                        if (playingAd) playingAd = false;
 
                         string artist = hook.GetArtist();
                         if (lastArtistName != artist)
