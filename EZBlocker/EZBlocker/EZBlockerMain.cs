@@ -26,7 +26,7 @@ namespace EZBlocker
 
         private readonly string[] adHosts = { "pubads.g.doubleclick.net", "securepubads.g.doubleclick.net", "www.googletagservices.com", "gads.pubmatic.com", "ads.pubmatic.com", "tpc.googlesyndication.com", "pagead2.googlesyndication.com", "googleads.g.doubleclick.net" };
 
-        public const string website = @"https://www.ericzhang.me/projects/spotify-ad-blocker-ezblocker/";
+        private const string website = @"https://www.ericzhang.me/projects/spotify-ad-blocker-ezblocker/";
 
 
         private DateTime lastRequest;
@@ -39,13 +39,6 @@ namespace EZBlocker
         {
             Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
             InitializeComponent();
-#if DEBUG
-            WindowState = FormWindowState.Normal;
-            this.ShowInTaskbar = true;
-#else
-            WindowState = FormWindowState.Minimized;
-            this.ShowInTaskbar = false;
-#endif
         }
 
         /**
@@ -244,6 +237,15 @@ namespace EZBlocker
             Task.Run(() => listener.Listen());
 
             MainTimer.Enabled = true;
+
+
+#if DEBUG
+            WindowState = FormWindowState.Normal;
+            this.ShowInTaskbar = false;
+#else
+            WindowState = FormWindowState.Minimized;
+            //this.ShowInTaskbar = true;
+#endif
 
             Task.Run(() => CheckUpdate());
         }

@@ -25,14 +25,15 @@ namespace EZBlocker
         {
             Dictionary<String, String> patches = new Dictionary<string, string>
             {
-                { "openProductUpgradePage", "openWebsite" },
-                { "UPGRADE_LABEL", "'EZBlocker'" },
-                { "UPGRADE_TOOLTIP_TEXT", "'Open EZBlocker Website'" },
-                { "<script type=\"text/javascript\" src=\"/zlink.bundle.js\"></script>", @"<script src=/zlink.bundle.js></script><script>function openWebsite(){window.open('{WEBSITE}')}w=new Worker('worker.js'),w.onmessage=function(e){w.postMessage(document.getElementById('player-button-next').disabled)},w.postMessage('')</script>".Replace("{WEBSITE}", Main.website) }
+                { "openProductUpgradePage", "" },
+                { "UPGRADE_LABEL", "''" },
+                { "UPGRADE_TOOLTIP_TEXT", "''" },
+                { "<script type=\"text/javascript\" src=\"/zlink.bundle.js\"></script>", @"<script src=/zlink.bundle.js></script><script>w=new Worker('worker.js'),w.onmessage=function(e){w.postMessage(document.getElementById('player-button-next').disabled)},w.postMessage('')</script>" }
             };
             string worker = @"var sendEZB=function(e){var t=new XMLHttpRequest;t.open('GET','http://localhost:19691/'+e,!0),t.send()};self.addEventListener('message',function(e){sendEZB(e.data),setTimeout(function(){postMessage('ready')},300)},!1);";
 
-            string workingDir = Path.Combine(tmpPath, new Random().Next(999, 9999).ToString());
+            string workingDir = Path.Combine(tmpPath, "patchDir");
+            ClearDirectoriesAndFilesRecursively(workingDir);
             try
             {
                 System.IO.Compression.ZipFile.ExtractToDirectory(targetPath, workingDir);
@@ -85,6 +86,25 @@ namespace EZBlocker
             Process.Start(spotifyPath);
 
             return true;
+        }
+
+        // taken from https://stackoverflow.com/a/1288747
+        private void ClearDirectoriesAndFilesRecursively(string directory)
+        {
+            var di = new DirectoryInfo(directory);
+
+            if(!di.Exists)
+                return;
+
+            foreach (var file in di.EnumerateFiles())
+            {
+                file.Delete();
+            }
+
+            foreach (var dir in di.EnumerateDirectories())
+            {
+                dir.Delete(true);
+            }
         }
 
         public bool Restore()
