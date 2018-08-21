@@ -1,7 +1,5 @@
-﻿namespace EZBlocker
-{
-    partial class Main
-    {
+﻿namespace EZBlocker {
+    partial class Main {
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -11,10 +9,8 @@
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
+        protected override void Dispose(bool disposing) {
+            if (disposing && (components != null)) {
                 components.Dispose();
             }
             base.Dispose(disposing);
@@ -26,8 +22,7 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent()
-        {
+        private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.MainTimer = new System.Windows.Forms.Timer(this.components);
@@ -35,6 +30,7 @@
             this.NotifyIconContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.websiteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.undoPatchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.separatorToolStripMenuItem = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.WebsiteLink = new System.Windows.Forms.LinkLabel();
@@ -54,9 +50,7 @@
             // NotifyIcon
             // 
             this.NotifyIcon.ContextMenuStrip = this.NotifyIconContextMenu;
-            this.NotifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("NotifyIcon.Icon")));
-            this.NotifyIcon.Text = "EZBlocker";
-            this.NotifyIcon.Visible = true;
+            this.NotifyIcon.BalloonTipClicked += new System.EventHandler(this.NotifyIcon_BalloonTipClicked);
             this.NotifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.NotifyIcon_MouseDoubleClick);
             // 
             // NotifyIconContextMenu
@@ -65,106 +59,93 @@
             this.NotifyIconContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openToolStripMenuItem,
             this.websiteToolStripMenuItem,
+            this.undoPatchToolStripMenuItem,
             this.separatorToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.NotifyIconContextMenu.Name = "NotifyIconContextMenu";
-            this.NotifyIconContextMenu.Size = new System.Drawing.Size(117, 76);
+            resources.ApplyResources(this.NotifyIconContextMenu, "NotifyIconContextMenu");
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
-            this.openToolStripMenuItem.Text = "Open";
+            resources.ApplyResources(this.openToolStripMenuItem, "openToolStripMenuItem");
+            this.openToolStripMenuItem.Text = global::EZBlocker.Properties.strings.ToolStripOpen;
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // websiteToolStripMenuItem
             // 
             this.websiteToolStripMenuItem.Name = "websiteToolStripMenuItem";
-            this.websiteToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
-            this.websiteToolStripMenuItem.Text = "Website";
+            resources.ApplyResources(this.websiteToolStripMenuItem, "websiteToolStripMenuItem");
+            this.websiteToolStripMenuItem.Text = global::EZBlocker.Properties.strings.ToolStripWebsite;
             this.websiteToolStripMenuItem.Click += new System.EventHandler(this.websiteToolStripMenuItem_Click);
+            // 
+            // undoPatchToolStripMenuItem
+            // 
+            this.undoPatchToolStripMenuItem.Name = "undoPatchToolStripMenuItem";
+            resources.ApplyResources(this.undoPatchToolStripMenuItem, "undoPatchToolStripMenuItem");
+            this.undoPatchToolStripMenuItem.Text = global::EZBlocker.Properties.strings.ToolStripRemovePatch;
+            this.undoPatchToolStripMenuItem.Click += new System.EventHandler(this.undoPatchToolStripMenuItem_Click);
             // 
             // separatorToolStripMenuItem
             // 
             this.separatorToolStripMenuItem.Name = "separatorToolStripMenuItem";
-            this.separatorToolStripMenuItem.Size = new System.Drawing.Size(113, 6);
+            resources.ApplyResources(this.separatorToolStripMenuItem, "separatorToolStripMenuItem");
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
-            this.exitToolStripMenuItem.Text = "&Exit";
+            resources.ApplyResources(this.exitToolStripMenuItem, "exitToolStripMenuItem");
+            this.exitToolStripMenuItem.Text = global::EZBlocker.Properties.strings.ToolStripExit;
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // WebsiteLink
             // 
-            this.WebsiteLink.AutoSize = true;
-            this.WebsiteLink.Location = new System.Drawing.Point(139, 108);
+            resources.ApplyResources(this.WebsiteLink, "WebsiteLink");
             this.WebsiteLink.Name = "WebsiteLink";
-            this.WebsiteLink.Size = new System.Drawing.Size(80, 13);
-            this.WebsiteLink.TabIndex = 5;
             this.WebsiteLink.TabStop = true;
-            this.WebsiteLink.Text = "Report Problem";
             this.WebsiteLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.WebsiteLink_LinkClicked);
             // 
             // VolumeMixerButton
             // 
-            this.VolumeMixerButton.Location = new System.Drawing.Point(12, 6);
+            resources.ApplyResources(this.VolumeMixerButton, "VolumeMixerButton");
             this.VolumeMixerButton.Name = "VolumeMixerButton";
-            this.VolumeMixerButton.Size = new System.Drawing.Size(200, 36);
-            this.VolumeMixerButton.TabIndex = 7;
-            this.VolumeMixerButton.Text = "Open Volume Control";
+            this.VolumeMixerButton.Text = global::EZBlocker.Properties.strings.VolumeMixerButtonText;
             this.VolumeMixerButton.UseVisualStyleBackColor = true;
             this.VolumeMixerButton.Click += new System.EventHandler(this.VolumeMixerButton_Click);
             // 
             // StatusLabel
             // 
-            this.StatusLabel.AutoSize = true;
-            this.StatusLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StatusLabel.Location = new System.Drawing.Point(10, 108);
+            resources.ApplyResources(this.StatusLabel, "StatusLabel");
             this.StatusLabel.Name = "StatusLabel";
-            this.StatusLabel.Size = new System.Drawing.Size(54, 13);
-            this.StatusLabel.TabIndex = 9;
-            this.StatusLabel.Text = "Loading...";
             // 
             // BlockBannersCheckbox
             // 
-            this.BlockBannersCheckbox.AutoSize = true;
-            this.BlockBannersCheckbox.Location = new System.Drawing.Point(12, 48);
+            resources.ApplyResources(this.BlockBannersCheckbox, "BlockBannersCheckbox");
             this.BlockBannersCheckbox.Name = "BlockBannersCheckbox";
-            this.BlockBannersCheckbox.Size = new System.Drawing.Size(111, 17);
-            this.BlockBannersCheckbox.TabIndex = 10;
-            this.BlockBannersCheckbox.Text = "Block Banner Ads";
+            this.BlockBannersCheckbox.Text = global::EZBlocker.Properties.strings.BlockBannersCheckboxText;
             this.BlockBannersCheckbox.UseVisualStyleBackColor = true;
             this.BlockBannersCheckbox.Click += new System.EventHandler(this.SkipAdsCheckbox_Click);
             // 
             // StartupCheckbox
             // 
-            this.StartupCheckbox.AutoSize = true;
-            this.StartupCheckbox.Location = new System.Drawing.Point(12, 67);
+            resources.ApplyResources(this.StartupCheckbox, "StartupCheckbox");
             this.StartupCheckbox.Name = "StartupCheckbox";
-            this.StartupCheckbox.Size = new System.Drawing.Size(145, 17);
-            this.StartupCheckbox.TabIndex = 11;
-            this.StartupCheckbox.Text = "Start EZBlocker on Login";
+            this.StartupCheckbox.Text = global::EZBlocker.Properties.strings.StartupCheckboxText;
             this.StartupCheckbox.UseVisualStyleBackColor = true;
             this.StartupCheckbox.CheckedChanged += new System.EventHandler(this.StartupCheckbox_CheckedChanged);
             // 
             // SpotifyCheckbox
             // 
-            this.SpotifyCheckbox.AutoSize = true;
-            this.SpotifyCheckbox.Location = new System.Drawing.Point(12, 88);
+            resources.ApplyResources(this.SpotifyCheckbox, "SpotifyCheckbox");
             this.SpotifyCheckbox.Name = "SpotifyCheckbox";
-            this.SpotifyCheckbox.Size = new System.Drawing.Size(158, 17);
-            this.SpotifyCheckbox.TabIndex = 12;
-            this.SpotifyCheckbox.Text = "Start Spotify with EZBlocker";
+            this.SpotifyCheckbox.Text = global::EZBlocker.Properties.strings.SpotifyCheckboxText;
             this.SpotifyCheckbox.UseVisualStyleBackColor = true;
             this.SpotifyCheckbox.CheckedChanged += new System.EventHandler(this.SpotifyCheckbox_CheckedChanged);
             // 
             // Main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(222, 130);
             this.Controls.Add(this.SpotifyCheckbox);
             this.Controls.Add(this.StartupCheckbox);
             this.Controls.Add(this.BlockBannersCheckbox);
@@ -173,13 +154,8 @@
             this.Controls.Add(this.WebsiteLink);
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Main";
-            this.RightToLeftLayout = true;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "EZBlocker";
-            this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
             this.Load += new System.EventHandler(this.Main_Load);
             this.Resize += new System.EventHandler(this.Form_Resize);
             this.NotifyIconContextMenu.ResumeLayout(false);
@@ -202,6 +178,6 @@
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem websiteToolStripMenuItem;
         private System.Windows.Forms.CheckBox SpotifyCheckbox;
+        private System.Windows.Forms.ToolStripMenuItem undoPatchToolStripMenuItem;
     }
 }
-

@@ -117,4 +117,126 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BlockBannersCheckboxText" xml:space="preserve">
+    <value>Bloquear Banners</value>
+    <comment>On main form</comment>
+  </data>
+  <data name="BlockBannersRestart" xml:space="preserve">
+    <value>Talvez voce precise reiniciar o Spotify ou seu computador para aplicar as configurações.</value>
+    <comment>BlockBannersCheckbox</comment>
+  </data>
+  <data name="BlockBannersUAC" xml:space="preserve">
+    <value>Habilitar/Desabilitar essa opção precisa de privilegios de Administrador.
+
+Por favor reabra o EZBlocker com "Executar como administrador".</value>
+    <comment>BlockBannersCheckbox</comment>
+  </data>
+  <data name="HiddenNotify" xml:space="preserve">
+    <value>EZBlocker esta escondido. Duplo clique nesse icone para restaurar.</value>
+    <comment>NotifyIcon</comment>
+  </data>
+  <data name="OnExitMessageBox" xml:space="preserve">
+    <value>Ads do Spotify nao serao bloqueados/mutados se o EZBlocker nao estiver sendo executado.
+
+Tem certeza?</value>
+    <comment>OnFormClosing</comment>
+  </data>
+  <data name="PatchErrorMessageBox" xml:space="preserve">
+    <value>Erro ao crackear Spotify. EZBlocker talvez nao funcione.</value>
+    <comment>On startup</comment>
+  </data>
+  <data name="ReportProblemClipboard" xml:space="preserve">
+    <value>EZBlocker Versão:{0}
+Spotify Versão:{1}</value>
+    <comment>ReportProblemLink</comment>
+  </data>
+  <data name="ReportProblemMessageBox" xml:space="preserve">
+    <value>Por favor deixe um comentário claro sobre a descrição do seu problema.
+
+Cole essa informação (Ja foi copiada para sua area de transferencia):
+EZBlocker Versão: {0}
+Spotfiy Versão : {1}</value>
+    <comment>ReportProblemLink</comment>
+  </data>
+  <data name="SpotifyCheckboxText" xml:space="preserve">
+    <value>Iniciar Spotify com Ezblocker</value>
+    <comment>On main form</comment>
+  </data>
+  <data name="SpotifyNotFoundMessageBox" xml:space="preserve">
+    <value>Spotify não esta instalado ou você possui a versão da Windows Store.
+
+Clique "OK" para instalar a versão desktop do Spotfiy.</value>
+    <comment>On startup</comment>
+  </data>
+  <data name="StartupCheckboxText" xml:space="preserve">
+    <value>Iniciar EZBlocker ao Logar-se</value>
+    <comment>On main form</comment>
+  </data>
+  <data name="StatusLabelLoadingText" xml:space="preserve">
+    <value>Carregando...</value>
+    <comment>On main form</comment>
+  </data>
+  <data name="StatusMuting" xml:space="preserve">
+    <value>Mutando:</value>
+    <comment>Status label</comment>
+  </data>
+  <data name="StatusNotFound" xml:space="preserve">
+    <value>Spotify nao encontrado</value>
+    <comment>Status label</comment>
+  </data>
+  <data name="StatusPaused" xml:space="preserve">
+    <value>Spotify esta pausado</value>
+    <comment>Status label</comment>
+  </data>
+  <data name="StatusPlaying" xml:space="preserve">
+    <value>Tocando:</value>
+    <comment>Status label</comment>
+  </data>
+  <data name="ToolStripExit" xml:space="preserve">
+    <value>Sair</value>
+    <comment>In tray menu</comment>
+  </data>
+  <data name="ToolStripOpen" xml:space="preserve">
+    <value>Mostrar Janela EZBlocker</value>
+    <comment>In tray menu</comment>
+  </data>
+  <data name="ToolStripRemovePatch" xml:space="preserve">
+    <value>Remover EZBlocker do Spotfiy</value>
+    <comment>In tray menu</comment>
+  </data>
+  <data name="ToolStripWebsite" xml:space="preserve">
+    <value>Abrir EZBlocker Website</value>
+    <comment>In tray menu</comment>
+  </data>
+  <data name="UndoPatchFailMessageBox" xml:space="preserve">
+    <value>Falha ao remover EZBlocker do Spotfiy.</value>
+    <comment>RemovePatch</comment>
+  </data>
+  <data name="UndoPatchOKMessageBox" xml:space="preserve">
+    <value>Ezblocker removido do Spotfiy.</value>
+    <comment>RemovePatch</comment>
+  </data>
+  <data name="UpgradeErrorMessageBox" xml:space="preserve">
+    <value>Erro ao checar update.</value>
+    <comment>CheckUpdate</comment>
+  </data>
+  <data name="UpgradeMessageBox" xml:space="preserve">
+    <value>Nova versão do EZBlocker disponível. Gostaria de atualizar?</value>
+    <comment>CheckUpdate</comment>
+  </data>
+  <data name="VolumeMixerButtonText" xml:space="preserve">
+    <value>Abrir Controle de Volume</value>
+    <comment>On main form</comment>
+  </data>
+  <data name="VolumeMixerOpenError" xml:space="preserve">
+    <value>Não foi possivel abrir o Controle de Volume.</value>
+    <comment>VolumeMixerButton</comment>
+  </data>
+  <data name="WebsiteLinkText" xml:space="preserve">
+    <value>Reportar Problema</value>
+    <comment>On main form</comment>
+  </data>
+  <data name="TranslatedByText" xml:space="preserve">
+    <value>Traduzido por Raí was here xD</value>
+  </data>
 </root>
