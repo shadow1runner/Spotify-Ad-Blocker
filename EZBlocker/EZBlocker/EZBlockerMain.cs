@@ -410,20 +410,8 @@ namespace EZBlocker
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             if (!MainTimer.Enabled) return; // Still setting up UI
-            if (!Properties.Settings.Default.UserEducated)
-            {
-                var result = MessageBox.Show(Properties.strings.OnExitMessageBox, "EZBlocker",
-                                 MessageBoxButtons.YesNo,
-                                 MessageBoxIcon.Warning);
-
-                e.Cancel = (result == DialogResult.No);
-
-                if (result == DialogResult.Yes)
-                {
-                    Properties.Settings.Default.UserEducated = true;
-                    Properties.Settings.Default.Save();
-                }
-            }
+            Properties.Settings.Default.UserEducated = true;
+            Properties.Settings.Default.Save();
             listener.Stop();
         }
 
