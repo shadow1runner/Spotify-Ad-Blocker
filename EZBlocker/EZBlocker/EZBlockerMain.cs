@@ -157,7 +157,7 @@ namespace EZBlocker
             }
             catch (Exception)
             {
-                MessageBox.Show(Properties.strings.UpgradeErrorMessageBox, "EZBlocker");
+                //MessageBox.Show(Properties.strings.UpgradeErrorMessageBox, "EZBlocker");
             }
         }
 
