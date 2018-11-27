@@ -49,7 +49,7 @@ namespace EZBlocker
             try {
                 if (hook.IsRunning())
                 {
-                    if (listener.Message.Equals("true"))
+                    if (hook.IsAdPlaying())
                     {
                         if (MainTimer.Interval != 1000) MainTimer.Interval = 1000;
                         if (!muted) Mute(true);
@@ -86,7 +86,7 @@ namespace EZBlocker
                             artistTooltip.SetToolTip(StatusLabel, artist);
                         }
                     }
-                    else
+                    else if (hook.WindowName.Equals("Spotify"))
                     {
                         string message = Properties.strings.StatusPaused;
                         if (lastMessage != message)
@@ -169,33 +169,6 @@ namespace EZBlocker
                 Properties.Settings.Default.UpdateSettings = false;
                 Properties.Settings.Default.Save();
             }
-  
-            if (!File.Exists(spotifyPath))
-            {
-                if (MessageBox.Show(Properties.strings.SpotifyNotFoundMessageBox, "EZBlocker", MessageBoxButtons.OKCancel) == DialogResult.OK)
-                {
-                    try // Remove Windows Store version.
-                    {
-                        ProcessStartInfo startInfo = new ProcessStartInfo
-                        {
-                            FileName = "powershell.exe",
-                            Arguments = "-Command \"Get-AppxPackage *Spotify* | Remove-AppxPackage\""
-                        };
-                        var uninstall = Process.Start(startInfo);
-                        uninstall.WaitForExit();
-                    }
-                    catch (Exception ex) {
-                        Debug.WriteLine(ex);
-                    }
-                    Process.Start("https://download.scdn.co/SpotifySetup.exe");
-                }
-                Application.Exit();
-                return;
-            }
-
-            // Patch Spotify
-            patcher = new SpotifyPatcher();
-            CheckPatch(true);
 
             // Start Spotify and give EZBlocker higher priority
             try
@@ -232,9 +205,9 @@ namespace EZBlocker
             // Start Spotify hook
             hook = new SpotifyHook();
 
-            // Start EZBlocker listener
+            /* Start EZBlocker listener
             listener = new Listener();
-            Task.Run(() => listener.Listen());
+            Task.Run(() => listener.Listen()); */
 
             MainTimer.Enabled = true;
 
