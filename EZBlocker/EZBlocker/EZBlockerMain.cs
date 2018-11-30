@@ -32,7 +32,6 @@ namespace EZBlocker
         private DateTime lastRequest;
         private string lastAction = "";
         private SpotifyPatcher patcher;
-        private Listener listener;
         private SpotifyHook hook;
 
         public Main()
@@ -385,7 +384,6 @@ namespace EZBlocker
             if (!MainTimer.Enabled) return; // Still setting up UI
             Properties.Settings.Default.UserEducated = true;
             Properties.Settings.Default.Save();
-            listener.Stop();
         }
 
         [DllImport("shell32.dll")]
